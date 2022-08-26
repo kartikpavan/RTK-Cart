@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import { BsCart } from "react-icons/bs";
+import { useSelector } from "react-redux/es/exports";
 
 const Navbar = () => {
+	const items = useSelector((state) => state.cart); // always get latest value b'coz the component is re-rendered everytime item changes
 	return (
 		<nav className="w-full h-20 bg-primary">
 			<div className="w-[70%] h-full mx-auto">
@@ -14,7 +16,9 @@ const Navbar = () => {
 						<Link to="/cart">CART</Link>
 						<div className="indicator cursor-pointer">
 							<BsCart size={24} />
-							<span className="indicator-item badge badge-accent">2</span>
+							<span className="indicator-item badge badge-accent">
+								{items.length}
+							</span>
 						</div>
 					</ul>
 				</div>

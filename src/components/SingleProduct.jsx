@@ -1,4 +1,13 @@
+import { useDispatch } from "react-redux";
+import { add } from "../store/cartSlice";
+
 const SingleProduct = ({ item }) => {
+	const dispatch = useDispatch();
+
+	const handleAddToCart = (product) => {
+		dispatch(add(product));
+	};
+
 	const { id, title, price, image } = item;
 	return (
 		<div className="card w-96 bg-base-100 shadow-xl py-4">
@@ -8,7 +17,9 @@ const SingleProduct = ({ item }) => {
 			<div className="flex flex-col items-center gap-2">
 				<h2 className="card-title">{title.slice(0, 30)}</h2>
 				<p className="font-bold">$ {price}</p>
-				<button className="btn btn-primary w-[50%]">Add to Cart</button>
+				<button className="btn btn-primary w-[50%]" onClick={() => handleAddToCart(item)}>
+					Add to Cart
+				</button>
 			</div>
 		</div>
 	);
